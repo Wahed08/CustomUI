@@ -14,69 +14,98 @@ class _SecondScreenState extends State<SecondScreen> {
   late CarouselSlider carouselSlider;
 
   List imageList = [
-    "asset/image.jpg",
-    "asset/image.jpg",
-    "asset/image.jpg",
-    "asset/image.jpg",
+    "https://picsum.photos/200/300",
+    "https://picsum.photos/200/300",
+    "https://picsum.photos/200/300",
+    "https://picsum.photos/200/300",
   ];
-  @override
-  Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      body: IndexedStack(
-      index: _current,
-      // color: Colors.black,
-      children: [Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                ElevatedButton(onPressed: (){onTap;}, child: Text("1")),
-                ElevatedButton(onPressed: (){onTap;}, child: Text("2")),
-                ElevatedButton(onPressed: (){}, child: Text("3")),
-                ElevatedButton(onPressed: (){}, child: Text("4"))
-            ],),
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Icon(Icons.search)),
+              Tab(icon: Icon(Icons.flight)),
+              Tab(icon: Icon(Icons.directions_transit)),
+              Tab(icon: Icon(Icons.directions_car)),
+            ],
           ),
-           CarouselSlider(
-            options: CarouselOptions(
-                height: 400,
-                initialPage: 0,
-                enlargeCenterPage: true,
-                enableInfiniteScroll: false,
-                // onPageChanged: (index, reason) {
-                //   setState(() {
-                //     _current = index;
-                //   });
-                // }
+          // title: Text('Tabs Demo'),
+        ),
+        body: TabBarView(
+          children: [
+            // Image.asset("asset/image.jpg"),
+            // Icon(Icons.flight, size: 350),
+            // Icon(Icons.directions_transit, size: 350),
+            // Icon(Icons.directions_car, size: 350),
+            CarouselSlider(
+                options: CarouselOptions(
+                  height: 400,
+                  initialPage: 0,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: false,
+                  onPageChanged: (index, reason){
+                  setState(() {
+                    _current = index;
+                  });
+                  }
                 ),
-            items: imageList.map((image) {
-              return Builder(builder: (BuildContext context) {
-                return Container(
-                  width: _width,
-                  margin: EdgeInsets.symmetric(horizontal: 10.0),
-                  decoration: BoxDecoration(color: Colors.red),
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.cover,
-                  ),
-                ); 
-              });
-            }).toList(),
-          )
-        ],
-      ),]
-      
-    )
+                items: [
+                  Image.asset("asset/image.jpg"),
+                ]),
+                CarouselSlider(
+                options: CarouselOptions(
+                  height: 400,
+                  // initialPage: 0,
+                  reverse: true,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: true,
+                  onPageChanged: (index, reason){
+                  setState(() {
+                    _current = index;
+                  });
+                  }
+                ),
+                items: [
+                  Image.asset("asset/image.jpg"),
+                ]),
+                CarouselSlider(
+                options: CarouselOptions(
+                  height: 400,
+                  // initialPage: 0,
+                  reverse: true,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: true,
+                  onPageChanged: (index, reason){
+                  setState(() {
+                    _current = index;
+                  });
+                  }
+                ),
+                items: [
+                  Image.asset("asset/image.jpg"),
+                ]),
+                CarouselSlider(
+                options: CarouselOptions(
+                  height: 400,
+                  // initialPage: 0,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: false,
+                  onPageChanged: (index, reason){
+                  setState(() {
+                    _current = index;
+                  });
+                  }
+                ),
+                items: [
+                  Image.asset("asset/image.jpg"),
+                ])
+          ],
+        ),
+      ),
     );
-  }
-   void onTap(int index){
-    setState(() {
-      _current = index;
-    });
   }
 }

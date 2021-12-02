@@ -116,7 +116,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 )),
           ));
 
-  Widget buildSheet() => Container(child: SecondScreen(), height: MediaQuery.of(context).size.height * 0.8,);
+  Widget buildSheet() => Container(child: SecondScreen(), height: MediaQuery.of(context).size.height * 0.9,);
 
   ElevatedButton Button2(BuildContext context) => ElevatedButton(
       onPressed: () {},
