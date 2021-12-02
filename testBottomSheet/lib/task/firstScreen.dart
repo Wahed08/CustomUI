@@ -13,6 +13,8 @@ class _FirstScreenState extends State<FirstScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    var _height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
         color: Colors.black,
@@ -48,7 +50,8 @@ class _FirstScreenState extends State<FirstScreen> {
                         onClicked: () => showModalBottomSheet(
                           isScrollControlled: true,
                             context: context,
-                            builder: (context) => buildSheet()),
+                            builder: (context) => buildSheet(),
+                        ),
                       ),
                       SizedBox(width: 35),
                       Button2(context),
@@ -113,7 +116,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 )),
           ));
 
-  Widget buildSheet() => SecondScreen();
+  Widget buildSheet() => Container(child: SecondScreen(), height: MediaQuery.of(context).size.height * 0.8,);
 
   ElevatedButton Button2(BuildContext context) => ElevatedButton(
       onPressed: () {},
