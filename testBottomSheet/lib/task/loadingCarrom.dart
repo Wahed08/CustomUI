@@ -14,7 +14,7 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
 
   @override
   void initState() {
-    print("hello");
+    // print("hello");
     _isLoading = true;
 
     super.initState();
@@ -26,17 +26,32 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
     print(result);
     final hasInternet = result != ConnectivityResult.none;
     if (hasInternet) {
-      print("object");
       setState(() {
         _isLoading = false;
       });
-    } else { 
-      print("sdfjobject");
-      setState(() {
-        _isLoading = true;
-      });
+    } else {
+      _showDialog();
+      // setState(() {
+      //   _isLoading = true;
+      // });
     }
     super.didChangeDependencies();
+  }
+
+  _showDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No Internet"),
+            content: Text("you don't have internet connecion"),
+            actions: <Widget>[
+                FlatButton(onPressed: (){
+                  Navigator.of(context).pop();
+                }, child: Text("Ok"))
+            ],
+          );
+        });
   }
 
   @override
@@ -66,10 +81,7 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
                     height: 320,
                   ),
             _isLoading
-                ? Text(
-                    "Loading..",
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  )
+                ? Text("Loading..", style: TextStyle(color: Colors.white),)
                 : SignInOptions()
           ],
         ),
