@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import './googleUser.dart';
+import './signInOptions.dart';
 
 class LoadingCarromScreen extends StatefulWidget {
   const LoadingCarromScreen({Key? key}) : super(key: key);
@@ -29,15 +30,13 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final googleData = Provider.of<GoogleUser>(context, listen: false);
-
     return Scaffold(
       body: Stack(children: [
         Container(
           color: Colors.purple[900],
         ),
         Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Center(
               child: Container(
@@ -48,40 +47,10 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 320,
-            ),
-              ElevatedButton.icon(
-              icon: FaIcon(FontAwesomeIcons.facebookF),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.indigo[600],
-                onPrimary: Colors.white,
-                minimumSize: Size(230, 45)
-              ),
-              onPressed: () {}, 
-              label: Text("Login with Facebook")),
-              SizedBox(height: 7,),
-              ElevatedButton.icon(
-              icon: FaIcon(FontAwesomeIcons.google),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue[400],
-                onPrimary: Colors.white,
-                minimumSize: Size(230, 45)
-              ),
-              onPressed: () {
-                  googleData.googleLogIn();
-              }, 
-              label: Text("Login with Google")),
-               SizedBox(height: 7,),
-               ElevatedButton.icon(
-              icon: FaIcon(FontAwesomeIcons.userGraduate),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.amber[900],
-                onPrimary: Colors.white,
-                minimumSize: Size(230, 45)
-              ),
-              onPressed: () {}, 
-              label: Text("Play as Guest")),
+            _isLoading?SizedBox(
+              height: 400,
+            ): SizedBox(height: 320,),
+            _isLoading ? Text("Loading", style: TextStyle(color: Colors.white, fontSize: 15),) : SignInOptions()
           ],
         ),
       ]),
