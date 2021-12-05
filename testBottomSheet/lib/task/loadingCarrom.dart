@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import './googleUser.dart';
 import './signInOptions.dart';
 
 class LoadingCarromScreen extends StatefulWidget {
@@ -16,20 +14,33 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
 
   @override
   void initState() {
+    print("hello");
     _isLoading = true;
-
-    Future.delayed(Duration(seconds: 2)).then((_) {
-      setState(() {
-        _isLoading = false;
-      });
-    });
 
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() async {
+    var result = await Connectivity().checkConnectivity();
+    print(result);
+    final hasInternet = result != ConnectivityResult.none;
+    if (hasInternet) {
+      print("object");
+      setState(() {
+        _isLoading = false;
+      });
+    } else { 
+      print("sdfjobject");
+      setState(() {
+        _isLoading = true;
+      });
+    }
+    super.didChangeDependencies();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
         Container(
@@ -47,10 +58,19 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
                 ),
               ),
             ),
-            _isLoading?SizedBox(
-              height: 400,
-            ): SizedBox(height: 320,),
-            _isLoading ? Text("Loading", style: TextStyle(color: Colors.white, fontSize: 15),) : SignInOptions()
+            _isLoading
+                ? SizedBox(
+                    height: 400,
+                  )
+                : SizedBox(
+                    height: 320,
+                  ),
+            _isLoading
+                ? Text(
+                    "Loading..",
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  )
+                : SignInOptions()
           ],
         ),
       ]),
