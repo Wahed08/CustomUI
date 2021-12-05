@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import './task/firstScreen.dart';
-import 'task/secondScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(Myapp());
 }
 
@@ -11,12 +13,7 @@ class Myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'App',
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const FirstScreen(),
-        // '/second': (context) => const SecondScreen(),
-      },
+      home: FirstScreen(),
     );
   }
 }
