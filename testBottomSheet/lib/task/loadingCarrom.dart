@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import './googleUser.dart';
 
 class LoadingCarromScreen extends StatefulWidget {
   const LoadingCarromScreen({Key? key}) : super(key: key);
@@ -26,7 +28,9 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Color _color = Color(0xff5E35B1);
+
+    final googleData = Provider.of<GoogleUser>(context, listen: false);
+
     return Scaffold(
       body: Stack(children: [
         Container(
@@ -64,7 +68,9 @@ class _LoadingCarromScreenState extends State<LoadingCarromScreen> {
                 onPrimary: Colors.white,
                 minimumSize: Size(230, 45)
               ),
-              onPressed: () {}, 
+              onPressed: () {
+                  googleData.googleLogIn();
+              }, 
               label: Text("Login with Google")),
                SizedBox(height: 7,),
                ElevatedButton.icon(
