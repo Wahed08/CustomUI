@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './secondScreen.dart';
+import './loadingCarrom.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({Key? key}) : super(key: key);
@@ -110,19 +111,19 @@ class _FirstScreenState extends State<FirstScreen> {
           onPressed: onClicked,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(2, 20, 2, 20),
-            child: Text("D Pool",
+            child: Text("Carrom",
                 style: TextStyle(
                   fontSize: 25,
                 )),
           ));
 
-  Widget buildSheet() => Container(child: SecondScreen(), height: MediaQuery.of(context).size.height * 0.9,);
+  Widget buildSheet() => Container(child: LoadingCarromScreen(), height: MediaQuery.of(context).size.height * 0.9,);
 
   ElevatedButton Button2(BuildContext context) => ElevatedButton(
       onPressed: () {},
       child: Padding(
         padding: const EdgeInsets.fromLTRB(2, 20, 2, 20),
-        child: Text("Carrom",
+        child: Text("D Pool",
             style: TextStyle(
               fontSize: 25,
             )),
