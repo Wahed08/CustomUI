@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:test/task/ProfileUI.dart';
+import 'package:test/task/FacebookProfileUI.dart';
 import './googleUser.dart';
 import './facebookUser.dart';
 
@@ -21,9 +22,10 @@ class SignInOptions extends StatelessWidget {
                   onPrimary: Colors.white,
                   minimumSize: Size(230, 45)),
               onPressed: () async {
+                  // ignore: await_only_futures
                   await facebookData.facebookLogIn();
-                  buildProfile();
-                Navigator.of(context).pushNamed('/profile');
+                  fbbuildProfile();
+                Navigator.of(context).pushNamed('/fbprofile');
               },
               label: Text("Login with Facebook")),
           SizedBox(
@@ -58,4 +60,5 @@ class SignInOptions extends StatelessWidget {
   }
 
   Widget buildProfile() => ProfileUI();
+  Widget fbbuildProfile() => FacebookProfileUI();
 }

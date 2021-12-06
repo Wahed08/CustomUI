@@ -2,7 +2,8 @@
 
 <resources>
     <string name="app_name">Flutter Firebase Auth Practice</string>
-    <string name="facebook_app_id">1298832807226917</string>
-    <string name="fb_login_protocol_scheme">fb1298832807226917</string>
+    <string name="facebook_app_id">###############</string>
+    <string name="fb_login_protocol_scheme">############</string>
 
 </resources>
+   
