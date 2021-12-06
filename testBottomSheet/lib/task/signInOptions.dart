@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:test/task/ProfileUI.dart';
 import './googleUser.dart';
+import './facebookUser.dart';
 
 class SignInOptions extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    
     final googleData = Provider.of<GoogleUser>(context, listen: false);
+    final facebookData = Provider.of<FacebookUser>(context, listen: false);
 
     return Container(
       child: Column(
@@ -19,7 +20,11 @@ class SignInOptions extends StatelessWidget {
                   primary: Colors.indigo[600],
                   onPrimary: Colors.white,
                   minimumSize: Size(230, 45)),
-              onPressed: () {},
+              onPressed: () async {
+                  await facebookData.facebookLogIn();
+                  buildProfile();
+                Navigator.of(context).pushNamed('/profile');
+              },
               label: Text("Login with Facebook")),
           SizedBox(
             height: 7,
@@ -32,6 +37,8 @@ class SignInOptions extends StatelessWidget {
                   minimumSize: Size(230, 45)),
               onPressed: () async {
                 await googleData.googleLogIn();
+                buildProfile();
+                Navigator.of(context).pushNamed('/profile');
               },
               label: Text("Login with Google")),
           SizedBox(
@@ -49,4 +56,6 @@ class SignInOptions extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildProfile() => ProfileUI();
 }

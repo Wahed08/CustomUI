@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './secondScreen.dart';
 import './loadingCarrom.dart';
 
 class FirstScreen extends StatefulWidget {

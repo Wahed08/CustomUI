@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:test/task/ProfileUI.dart';
 import './task/firstScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './task/googleUser.dart';
@@ -16,8 +17,13 @@ class Myapp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => GoogleUser(),
       child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/': (context) => FirstScreen(),
+          '/profile': (context) => ProfileUI()
+        },
         debugShowCheckedModeBanner: false,
-        home: FirstScreen(),
+        // home: FirstScreen(),
       ),
     );
   }
