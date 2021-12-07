@@ -44,17 +44,16 @@ class ProfileUI extends StatelessWidget {
             ),
             Center(
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
+                       style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.red,),primary: Colors.deepPurple[800]),
                         onPressed: () {},
                         child: Container(
-                          height: 110,
+                          height: 120,
                           width: 110,
-                          color: Colors.deepPurple[700],
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -74,9 +73,10 @@ class ProfileUI extends StatelessWidget {
                         width: 20,
                       ),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.blue,),primary: Colors.deepPurple[800]),
                         onPressed: () {},
                         child: Container(
-                          height: 110,
+                          height: 120,
                           width: 110,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -99,11 +99,13 @@ class ProfileUI extends StatelessWidget {
                     height: 20,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.green,),primary: Colors.deepPurple[800]),
                         onPressed: () {},
                         child: Container(
-                          height: 110,
+                          height: 120,
                           width: 110,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -124,9 +126,10 @@ class ProfileUI extends StatelessWidget {
                         width: 20,
                       ),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.yellow,),primary: Colors.deepPurple[800]),
                         onPressed: () {},
                         child: Container(
-                          height: 110,
+                          height: 120,
                           width: 110,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
