@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +10,8 @@ class ProfileUI extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.deepPurple[700],
+        toolbarHeight: 80,
         title: Text("${user.displayName!}"),
         actions: [
           Padding(
@@ -20,23 +23,6 @@ class ProfileUI extends StatelessWidget {
           )
         ],
       ),
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.start,
-      //     children: [
-      //       Padding(
-      //        padding: const EdgeInsets.fromLTRB(0, 70, 0, 10),
-      //         child: CircleAvatar(
-      //           radius: 40,
-      //           backgroundImage: NetworkImage(user.photoURL!),
-      //         ),
-      //       ),
-      //       Text("Name: " + user.displayName!, style: TextStyle(fontSize: 16),),
-      //       SizedBox(height: 7,),
-      //       Text(user.email!)
-      //     ],
-      //   ),
-      // ),
       body: Stack(children: [
         Container(
           color: Colors.purple[900],
@@ -46,14 +32,16 @@ class ProfileUI extends StatelessWidget {
           children: [
             Center(
               child: Container(
-                margin: EdgeInsets.only(top: 120),
+                margin: EdgeInsets.only(top: 80),
                 child: Text(
                   "CARROM",
                   style: TextStyle(color: Colors.white, fontSize: 22),
                 ),
               ),
             ),
-            SizedBox(height: 90,),
+            SizedBox(
+              height: 90,
+            ),
             Center(
               child: Column(
                 // mainAxisAlignment: MainAxisAlignment.start,
@@ -64,7 +52,11 @@ class ProfileUI extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         child: Container(
+                          height: 110,
+                          width: 110,
+                          color: Colors.deepPurple[700],
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Play",
                                   style: TextStyle(
@@ -84,7 +76,10 @@ class ProfileUI extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         child: Container(
+                          height: 110,
+                          width: 110,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Play",
                                   style: TextStyle(
@@ -108,7 +103,10 @@ class ProfileUI extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         child: Container(
+                          height: 110,
+                          width: 110,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Play",
                                   style: TextStyle(
@@ -128,7 +126,10 @@ class ProfileUI extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {},
                         child: Container(
+                          height: 110,
+                          width: 110,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Play",
                                   style: TextStyle(
@@ -150,32 +151,41 @@ class ProfileUI extends StatelessWidget {
           ],
         ),
       ]),
-       bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: true,
         // currentIndex: _index,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Home"),
-            backgroundColor: Colors.blue,
+            icon: Image.asset(
+              "asset/house_icon.png",
+              height: 45,
+              width: 45,
+            ),
+            label: "Home",
+            backgroundColor: Colors.deepPurple[700],
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              title: Text("Search"),
-              backgroundColor: Colors.blue),
+              icon: Image.asset(
+                "asset/users_people_group_friends_icon.png",
+                height: 45,
+                width: 45,
+              ),
+              label: "Friends"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.menu),
-              title: Text("Menu"),
-              backgroundColor: Colors.blue),
+              icon: Image.asset(
+                "asset/general_office_repair_repair tool_icon.png",
+                height: 45,
+                width: 45,
+              ),
+              label: "Equipment"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: Text("Person"),
-              backgroundColor: Colors.blue)
+              icon: Image.asset(
+                "asset/buy_cart_market_purchase_shop_icon.png",
+                height: 45,
+                width: 45,
+              ),
+              label: "Shop")
         ],
-        // onTap: (index) {
-        //   setState(() {
-        //     _index = index;
-        //   });
-        // },
       ),
     );
   }
