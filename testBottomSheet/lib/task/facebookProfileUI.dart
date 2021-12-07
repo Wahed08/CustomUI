@@ -24,10 +24,10 @@ class FacebookProfileUI extends StatelessWidget {
              padding: const EdgeInsets.fromLTRB(0, 70, 0, 10),
               child: CircleAvatar(
                 radius: 40,
-                // backgroundImage: NetworkImage(user.photoURL!),
+                backgroundImage: NetworkImage(facebookData.data['picture']['data']['url']),
               ),
             ),
-            Text("Name: " + facebookData.data, style: TextStyle(fontSize: 16),),
+            Text("Name: " + facebookData.data['name'], style: TextStyle(fontSize: 16),),
             SizedBox(height: 7,),
             // Text(user.email!)
           ],

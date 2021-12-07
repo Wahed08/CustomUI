@@ -59,11 +59,12 @@ class ProfileUI extends StatelessWidget {
                             children: [
                               Text("Play",
                                   style: TextStyle(
-                                    fontSize: 25,
+                                    fontSize: 30,
                                   )),
                               Text("Disc Pool",
                                   style: TextStyle(
                                     fontSize: 25,
+                                    fontWeight: FontWeight.w400,
                                   )),
                             ],
                           ),
@@ -83,11 +84,12 @@ class ProfileUI extends StatelessWidget {
                             children: [
                               Text("Play",
                                   style: TextStyle(
-                                    fontSize: 25,
+                                    fontSize: 30,
                                   )),
                               Text("Carrom",
                                   style: TextStyle(
                                     fontSize: 25,
+                                    fontWeight: FontWeight.w400,
                                   )),
                             ],
                           ),
@@ -112,11 +114,12 @@ class ProfileUI extends StatelessWidget {
                             children: [
                               Text("Play",
                                   style: TextStyle(
-                                    fontSize: 25,
+                                    fontSize: 30,
                                   )),
                               Text("Freestyle",
                                   style: TextStyle(
                                     fontSize: 25,
+                                    fontWeight: FontWeight.w400,
                                   )),
                             ],
                           ),
@@ -136,11 +139,12 @@ class ProfileUI extends StatelessWidget {
                             children: [
                               Text("Play",
                                   style: TextStyle(
-                                    fontSize: 25,
+                                    fontSize: 30,
                                   )),
                               Text("Offline",
                                   style: TextStyle(
                                     fontSize: 25,
+                                    fontWeight: FontWeight.w400,
                                   )),
                             ],
                           ),
