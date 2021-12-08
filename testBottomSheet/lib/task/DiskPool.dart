@@ -12,16 +12,12 @@ class _DiskPoolScreenState extends State<DiskPoolScreen>
     with SingleTickerProviderStateMixin {
   List images = ["image.jpg", "image.jpg", "image.jpg"];
 
-   var colors = [
+  var colors = [
     Colors.cyan,
     Colors.deepOrange[200],
     Colors.lightGreen,
   ];
-    var firstName = [
-    "Dhaka",
-    "Singapore",
-    "Malayasia"
-  ];
+  var firstName = ["Dhaka", "Singapore", "Malayasia"];
 
   @override
   Widget build(BuildContext context) {
@@ -92,9 +88,32 @@ class _DiskPoolScreenState extends State<DiskPoolScreen>
                       return Container(
                         margin: EdgeInsets.only(left: 10, right: 20),
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: colors[index]),
-                          onPressed: () {},
+                          style:
+                              ElevatedButton.styleFrom(primary: colors[index]),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("AlertDialog"),
+                                    content: Text(
+                                        "Would you like to continue the playing the match in the ${firstName[index]} Arena"),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Container(height: 30, width: 60,color: Colors.teal,child: Center(child: Text("Yes")))),
+                                      FlatButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Container(height: 30, width: 60,color: Colors.teal,child: Center(child: Text("No"))))
+                                    ],
+                                    // elevation: 24,
+                                  );
+                                });
+                          },
                           child: Container(
                             height: 300,
                             width: 200,
