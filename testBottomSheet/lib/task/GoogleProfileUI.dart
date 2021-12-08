@@ -1,7 +1,7 @@
 import 'dart:ui';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import './DiskPool.dart';
 
 class ProfileUI extends StatelessWidget {
   @override
@@ -50,7 +50,9 @@ class ProfileUI extends StatelessWidget {
                     children: [
                       ElevatedButton(
                        style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.red,),primary: Colors.deepPurple[800]),
-                        onPressed: () {},
+                        onPressed: () {
+                          showModalBottomSheet(isScrollControlled: true,context: context, builder: (context) => buildSheet(context));
+                        },
                         child: Container(
                           height: 120,
                           width: 110,
@@ -196,4 +198,5 @@ class ProfileUI extends StatelessWidget {
       ),
     );
   }
+  Widget buildSheet(BuildContext context) => Container(child: DiskPoolScreen(), height:  MediaQuery.of(context).size.height * 0.9,);
 }
