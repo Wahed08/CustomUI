@@ -3,10 +3,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Carrom/CarromDiskPool.dart';
 
-class ProfileUI extends StatelessWidget {
+class ProfileUI extends StatefulWidget {
+  @override
+  _ProfileUIState createState() => _ProfileUIState();
+}
+
+class _ProfileUIState extends State<ProfileUI> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
+    int _index = 0;
 
     return Scaffold(
       appBar: AppBar(
@@ -49,9 +55,17 @@ class ProfileUI extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                       style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.red,),primary: Colors.deepPurple[800]),
+                        style: ElevatedButton.styleFrom(
+                            side: BorderSide(
+                              width: 5.0,
+                              color: Colors.red,
+                            ),
+                            primary: Colors.deepPurple[800]),
                         onPressed: () {
-                          showModalBottomSheet(isScrollControlled: true,context: context, builder: (context) => buildSheet(context));
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (context) => buildSheet(context));
                         },
                         child: Container(
                           height: 120,
@@ -76,7 +90,12 @@ class ProfileUI extends StatelessWidget {
                         width: 20,
                       ),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.blue,),primary: Colors.deepPurple[800]),
+                        style: ElevatedButton.styleFrom(
+                            side: BorderSide(
+                              width: 5.0,
+                              color: Colors.blue,
+                            ),
+                            primary: Colors.deepPurple[800]),
                         onPressed: () {},
                         child: Container(
                           height: 120,
@@ -106,7 +125,12 @@ class ProfileUI extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.green,),primary: Colors.deepPurple[800]),
+                        style: ElevatedButton.styleFrom(
+                            side: BorderSide(
+                              width: 5.0,
+                              color: Colors.green,
+                            ),
+                            primary: Colors.deepPurple[800]),
                         onPressed: () {},
                         child: Container(
                           height: 120,
@@ -131,7 +155,12 @@ class ProfileUI extends StatelessWidget {
                         width: 20,
                       ),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(side: BorderSide(width: 5.0, color: Colors.yellow,),primary: Colors.deepPurple[800]),
+                        style: ElevatedButton.styleFrom(
+                            side: BorderSide(
+                              width: 5.0,
+                              color: Colors.yellow,
+                            ),
+                            primary: Colors.deepPurple[800]),
                         onPressed: () {},
                         child: Container(
                           height: 120,
@@ -161,8 +190,17 @@ class ProfileUI extends StatelessWidget {
         ),
       ]),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _index,
+        onTap: (index) {
+          setState(() {
+            _index = index;
+          });
+          if (_index == 0) Navigator.of(context).pushNamed('/home');
+          if (_index == 1) Navigator.of(context).pushNamed('/friends');
+          if (_index == 2) Navigator.of(context).pushNamed('/equipement');
+          if (_index == 3) Navigator.of(context).pushNamed('/shop');
+        },
         showUnselectedLabels: true,
-        // currentIndex: _index,
         items: [
           BottomNavigationBarItem(
             icon: Image.asset(
@@ -198,5 +236,9 @@ class ProfileUI extends StatelessWidget {
       ),
     );
   }
-  Widget buildSheet(BuildContext context) => Container(child: DiskPoolScreen(), height:  MediaQuery.of(context).size.height * 0.9,);
+
+  Widget buildSheet(BuildContext context) => Container(
+        child: DiskPoolScreen(),
+        height: MediaQuery.of(context).size.height * 0.9,
+      );
 }

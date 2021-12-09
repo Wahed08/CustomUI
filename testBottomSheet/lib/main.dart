@@ -6,6 +6,10 @@ import 'task/screens/firstScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'task/user/googleUser.dart';
 import './task/user/facebookUser.dart';
+import 'task/screens/homeUI.dart';
+import './task/screens/friendsUI.dart';
+import './task/screens/shopUI.dart';
+import './task/screens/equipementUI.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +30,11 @@ class Myapp extends StatelessWidget {
         routes: {
           '/': (context) => FirstScreen(),
           '/profile': (context) => ProfileUI(),
-          '/fbprofile': (context) => FacebookProfileUI()
+          '/fbprofile': (context) => FacebookProfileUI(),
+          '/home': (context) => HomeUI(),
+          '/friends': (context) => FriendsUI(),
+          '/equipement': (context) => EquipementUI(),
+          '/shop': (context) => ShopUI(),
         },
         debugShowCheckedModeBanner: false,
         // home: FirstScreen(),

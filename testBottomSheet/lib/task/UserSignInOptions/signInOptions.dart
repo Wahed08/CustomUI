@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:test/task/profile/GoogleProfileUI.dart';
-import 'package:test/task/FacebookProfileUI.dart';
+import 'package:test/task/profile/FacebookProfileUI.dart';
 import '../user/googleUser.dart';
 import '../user/facebookUser.dart';
 
