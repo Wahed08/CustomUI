@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './loadingCarrom.dart';
+import '../Carrom/loadingCarrom.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({Key? key}) : super(key: key);

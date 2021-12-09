@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:test/task/GoogleProfileUI.dart';
-import 'package:test/task/facebookProfileUI.dart';
-import './task/firstScreen.dart';
+import 'package:test/task/profile/GoogleProfileUI.dart';
+import 'package:test/task/profile/facebookProfileUI.dart';
+import 'task/screens/firstScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import './task/googleUser.dart';
-import './task/facebookUser.dart';
+import 'task/user/googleUser.dart';
+import './task/user/facebookUser.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

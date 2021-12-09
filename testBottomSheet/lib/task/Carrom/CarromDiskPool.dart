@@ -103,14 +103,15 @@ class _DiskPoolScreenState extends State<DiskPoolScreen>
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
-                                          child: Container(height: 30, width: 60,color: Colors.teal,child: Center(child: Text("Yes")))),
+                                          child: Container(height: 30, width: 60,color: Colors.blue,child: Center(child: Text("Yes")))),
                                       FlatButton(
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
-                                          child: Container(height: 30, width: 60,color: Colors.teal,child: Center(child: Text("No"))))
+                                          child: Container(height: 30, width: 60,color: Colors.blue,child: Center(child: Text("No"))))
                                     ],
                                     // elevation: 24,
+                                    backgroundColor: Colors.teal,
                                   );
                                 });
                           },

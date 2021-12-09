@@ -1,6 +1,6 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import './signInOptions.dart';
+import '../UserSignInOptions/signInOptions.dart';
 
 class LoadingCarromScreen extends StatefulWidget {
   const LoadingCarromScreen({Key? key}) : super(key: key);
