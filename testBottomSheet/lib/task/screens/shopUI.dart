@@ -34,6 +34,13 @@ class _ShopUIState extends State<ShopUI> {
             Text('Description: ${nonce.description}'),
           ],
         ),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text("Ok",style: TextStyle(color: Colors.blue),)),
+        ],
     ));
   }
 
@@ -104,11 +111,10 @@ class _ShopUIState extends State<ShopUI> {
                                   child: ElevatedButton(
                                       onPressed: () async{
                                         var request = BraintreeDropInRequest(
-                                          // clientToken: 'MIIBCgKCAQEAtizQvxDsYe31SSE2vANgiARrfkXyh30DS45hZSk7FPmewbMF1B1DccqlvzNfPdVyTc7HN8/DurRcqpfOW2AkDnNrWj3solA37GetepKZDxUDByyhEGc65aTEAN7QMgY9mGneaetisVSL/fvJ9UC6QUx77H0fgU2PUiSMeNz6KY5zQH2Kefr/1nSiWFkz+DGAsWrbhH40+F6Hs/wPk+GHfDi1WRKhUOsAwX0ts3VqmiGeB5XWABFuLO1BfYu4u2vvTsdVCBqnJNZ/Dh8i6bjtrlC3UM80xUzWYN5YTtMq07J6uzgTF6Ji5m5j7tltyfTMwKX4rxpCQFnXC2fsERB2nwIDAQAB',
                                             tokenizationKey: 'sandbox_4xbg2dmr_k24tjdnxdw657m8h',
                                             collectDeviceData: true,
                                            paypalRequest: BraintreePayPalRequest(
-                                             amount: '10.00',
+                                             amount: '20.00',
                                              currencyCode: 'USD',
                                              displayName: 'wahed',
                                            ),
@@ -123,11 +129,10 @@ class _ShopUIState extends State<ShopUI> {
                                           showNonce(result!.paymentMethodNonce);
                                         }
                                         else{
-                                          print("hello helloe");
+                                          print("hello hello");
                                         }
                                       },
-                                      child: Text("BDT 80.00", softWrap: false,))),
-                                      
+                                      child: Text("BDT 80.00", softWrap: false,))),         
                             ]
                           )),
                     );
