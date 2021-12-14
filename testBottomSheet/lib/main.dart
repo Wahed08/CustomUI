@@ -10,11 +10,12 @@ import 'task/screens/homeUI.dart';
 import './task/screens/friendsUI.dart';
 import './task/screens/shopUI.dart';
 import './task/screens/equipementUI.dart';
+import './task/screens/sslCommerz.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(Myapp());
+  runApp(SSLCoomerz());
 }
 
 class Myapp extends StatelessWidget {
