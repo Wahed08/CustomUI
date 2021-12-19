@@ -10,7 +10,6 @@ class Board extends StatefulWidget {
 class _BoardState extends State<Board> {
   int flag = 0;
   int turn = 0;
-  int check = 0;
 
   int output = 1;
   void diceChanges() {
@@ -19,6 +18,7 @@ class _BoardState extends State<Board> {
       output = 1 + Random().nextInt(6);
     });
   }
+
   int sixCount = 0;
   void changes() {
     if (output == 6 && sixCount <= 3) {
@@ -56,11 +56,11 @@ class _BoardState extends State<Board> {
               margin: EdgeInsets.only(left: 20, bottom: 10),
               child: Row(
                 children: [
-                  (turn == 0)
-                      ? Container(
-                          height: 50,
-                          width: 50,
-                          child: Container(
+                  Container(
+                    height: 50,
+                    width: 50,
+                    child: (turn == 0)
+                        ? Container(
                             color: Colors.blue,
                             child: GestureDetector(
                               child: Image.asset("asset/dice${output}.jpg"),
@@ -69,26 +69,36 @@ class _BoardState extends State<Board> {
                                 changes();
                               },
                             ),
+                          )
+                        : Opacity(
+                            opacity: 0.2,
+                            child: Container(
+                              child: Image.asset("asset/dice${output}.jpg"),
+                            ),
                           ),
-                        )
-                      : Container(),
-                  SizedBox(
-                    width: 320,
                   ),
-                  (turn == 1)
-                      ? Container(
-                          height: 50,
-                          width: 50,
-                          child: Container(
-                              color: Colors.blue,
-                              child: GestureDetector(
-                                  child: Image.asset("asset/dice${output}.jpg"),
-                                  onTap: () {
-                                    diceChanges();
-                                    changes();
-                                  })),
-                        )
-                      : Container()
+                  SizedBox(
+                    width: 270,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    child: (turn == 1)
+                        ? Container(
+                            color: Colors.blue,
+                            child: GestureDetector(
+                                child: Image.asset("asset/dice${output}.jpg"),
+                                onTap: () {
+                                  diceChanges();
+                                  changes();
+                                }))
+                        : Opacity(
+                            opacity: 0.2,
+                            child: Container(
+                              child: Image.asset("asset/dice${output}.jpg"),
+                            ),
+                          ),
+                  )
                 ],
               ),
             ),
@@ -114,37 +124,47 @@ class _BoardState extends State<Board> {
               margin: EdgeInsets.only(left: 20),
               child: Row(
                 children: [
-                  (turn == 3)
-                      ? Container(
-                          height: 50,
-                          width: 50,
-                          child: Container(
-                              color: Colors.blue,
-                              child: GestureDetector(
-                                  child: Image.asset("asset/dice${output}.jpg"),
-                                  onTap: () {
-                                    diceChanges();
-                                    changes();
-                                  })),
-                        )
-                      : Container(),
-                  SizedBox(
-                    width: 320,
+                  Container(
+                    height: 50,
+                    width: 50,
+                    child: (turn == 3)
+                        ? Container(
+                            color: Colors.blue,
+                            child: GestureDetector(
+                                child: Image.asset("asset/dice${output}.jpg"),
+                                onTap: () {
+                                  diceChanges();
+                                  changes();
+                                }))
+                        : Opacity(
+                            opacity: 0.2,
+                            child: Container(
+                              child: Image.asset("asset/dice${output}.jpg"),
+                            ),
+                          ),
                   ),
-                  (turn == 2)
-                      ? Container(
-                          height: 50,
-                          width: 50,
-                          child: Container(
-                              color: Colors.blue,
-                              child: GestureDetector(
-                                  child: Image.asset("asset/dice${output}.jpg"),
-                                  onTap: () {
-                                    diceChanges();
-                                    changes();
-                                  })),
-                        )
-                      : Container()
+                  SizedBox(
+                    width: 270,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    child: (turn == 2)
+                        ? Container(
+                            color: Colors.blue,
+                            child: GestureDetector(
+                                child: Image.asset("asset/dice${output}.jpg"),
+                                onTap: () {
+                                  diceChanges();
+                                  changes();
+                                }))
+                        : Opacity(
+                            opacity: 0.2,
+                            child: Container(
+                              child: Image.asset("asset/dice${output}.jpg"),
+                            ),
+                          ),
+                  )
                 ],
               ),
             ),
