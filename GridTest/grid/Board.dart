@@ -67,9 +67,9 @@ class _BoardState extends State<Board> {
                         ? Container(
                             color: Colors.blue,
                             child: GestureDetector(
-                              child: Image.asset("asset/dice${output}.jpg"),
+                              child: Image.asset("assets/dice${output}.jpg"),
                               onTap: () {
-                                audioCache.play("asset/roll.wav");
+                                audioCache.play('roll.wav');
                                 diceChanges();
                                 changes();
                               },
@@ -78,7 +78,7 @@ class _BoardState extends State<Board> {
                         : Opacity(
                             opacity: 0.2,
                             child: Container(
-                              child: Image.asset("asset/dice${output}.jpg"),
+                              child: Image.asset("assets/dice1.jpg"),
                             ),
                           ),
                   ),
@@ -92,16 +92,16 @@ class _BoardState extends State<Board> {
                         ? Container(
                             color: Colors.blue,
                             child: GestureDetector(
-                                child: Image.asset("asset/dice${output}.jpg"),
+                                child: Image.asset("assets/dice${output}.jpg"),
                                 onTap: () {
-                                  audioCache.play("asset/roll.wav");
+                                  audioCache.play("roll.wav");
                                   diceChanges();
                                   changes();
                                 }))
                         : Opacity(
                             opacity: 0.2,
                             child: Container(
-                              child: Image.asset("asset/dice${output}.jpg"),
+                              child: Image.asset("assets/dice3.jpg"),
                             ),
                           ),
                   )
@@ -137,16 +137,16 @@ class _BoardState extends State<Board> {
                         ? Container(
                             color: Colors.blue,
                             child: GestureDetector(
-                                child: Image.asset("asset/dice${output}.jpg"),
+                                child: Image.asset("assets/dice${output}.jpg"),
                                 onTap: () {
-                                  audioCache.play("asset/roll.wav");
+                                  audioCache.play("roll.wav");
                                   diceChanges();
                                   changes();
                                 }))
                         : Opacity(
                             opacity: 0.2,
                             child: Container(
-                              child: Image.asset("asset/dice${output}.jpg"),
+                              child: Image.asset("assets/dice5.jpg"),
                             ),
                           ),
                   ),
@@ -160,16 +160,16 @@ class _BoardState extends State<Board> {
                         ? Container(
                             color: Colors.blue,
                             child: GestureDetector(
-                                child: Image.asset("asset/dice${output}.jpg"),
+                                child: Image.asset("assets/dice${output}.jpg"),
                                 onTap: () {
-                                  audioCache.play("asset/roll.wav");
+                                  audioCache.play("roll.wav");
                                   diceChanges();
                                   changes();
                                 }))
                         : Opacity(
                             opacity: 0.2,
                             child: Container(
-                              child: Image.asset("asset/dice${output}.jpg"),
+                              child: Image.asset("assets/dice2.jpg"),
                             ),
                           ),
                   )
