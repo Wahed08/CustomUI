@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './gridCell.dart';
 import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 
 class Board extends StatefulWidget {
   @override
@@ -8,6 +9,9 @@ class Board extends StatefulWidget {
 }
 
 class _BoardState extends State<Board> {
+  //audioPlayer
+  AudioCache audioCache = new AudioCache();
+
   int flag = 0;
   int turn = 0;
 
@@ -25,7 +29,7 @@ class _BoardState extends State<Board> {
       turn = turn;
       sixCount++;
     } else {
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(Duration(seconds: 2), () {
         setState(() {
           sixCount = 0;
           flag = 0;
@@ -65,6 +69,7 @@ class _BoardState extends State<Board> {
                             child: GestureDetector(
                               child: Image.asset("asset/dice${output}.jpg"),
                               onTap: () {
+                                audioCache.play("asset/roll.wav");
                                 diceChanges();
                                 changes();
                               },
@@ -89,6 +94,7 @@ class _BoardState extends State<Board> {
                             child: GestureDetector(
                                 child: Image.asset("asset/dice${output}.jpg"),
                                 onTap: () {
+                                  audioCache.play("asset/roll.wav");
                                   diceChanges();
                                   changes();
                                 }))
@@ -133,6 +139,7 @@ class _BoardState extends State<Board> {
                             child: GestureDetector(
                                 child: Image.asset("asset/dice${output}.jpg"),
                                 onTap: () {
+                                  audioCache.play("asset/roll.wav");
                                   diceChanges();
                                   changes();
                                 }))
@@ -155,6 +162,7 @@ class _BoardState extends State<Board> {
                             child: GestureDetector(
                                 child: Image.asset("asset/dice${output}.jpg"),
                                 onTap: () {
+                                  audioCache.play("asset/roll.wav");
                                   diceChanges();
                                   changes();
                                 }))
