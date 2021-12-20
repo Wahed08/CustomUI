@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GridCell extends StatelessWidget {
+class GridCell extends StatefulWidget {
   final int i;
   final int j;
   final int flag;
@@ -8,10 +8,54 @@ class GridCell extends StatelessWidget {
   GridCell({required this.i, required this.j, required this.flag});
 
   @override
+  _GridCellState createState() => _GridCellState();
+}
+
+class _GridCellState extends State<GridCell>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<int> intAnimation;
+
+  var arr = [91, 92, 93, 94, 95, 81];
+
+  Color _color = Colors.grey;
+  int x = 91;
+
+  @override
+  void initState() {
+    int y = 1;
+    int z = 0;
+     super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    Tween<int> tween = Tween<int>(begin: arr[z], end: arr[y]);
+    intAnimation = (tween.animate(controller)
+      ..addListener(() {
+        for (int i = 0; i < arr.length-1; i++) {
+          setState(() {
+            z++;
+            y++;
+            x = intAnimation.value;
+          });
+        }
+      }));
+    controller.forward();
+   
+  }
+
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Map<int, List<int>> map = Map();
-    map[flag] = [i, j];
-   // print(map);
+    map[widget.flag] = [widget.i, widget.j];
+    int i = 0;
+    // print(map);
 
     return Stack(
       alignment: Alignment.center,
@@ -21,28 +65,42 @@ class GridCell extends StatelessWidget {
             color: Colors.red,
             padding: EdgeInsets.all(2),
             child: Center(
-              child: Text("$flag"),
+              child: Text("${widget.flag}"),
             )),
-        (i <= 5 && j <= 5)
+        (widget.i <= 5 && widget.j <= 5)
             ? Container(
                 color: Colors.green,
               )
             : Container(),
-        (i <= 5 && j >= 9)
+        (widget.i <= 5 && widget.j >= 9)
             ? Container(
                 color: Colors.red,
               )
             : Container(),
-        (i >= 9 && j >= 9)
+        (widget.i >= 9 && widget.j >= 9)
             ? Container(
                 color: Colors.yellow,
               )
             : Container(),
-        (i >= 9 && j <= 5)
+        (widget.i >= 9 && widget.j <= 5)
             ? Container(
                 color: Colors.blue,
               )
             : Container(),
+        (map.keys.first == x)
+            ? GestureDetector(
+                onTap: () {
+                  print(arr[i]);
+                  i++;
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _color,
+                  ),
+                ),
+              )
+            : Container()
       ],
     );
   }
