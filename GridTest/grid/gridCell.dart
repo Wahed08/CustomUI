@@ -14,35 +14,29 @@ class GridCell extends StatefulWidget {
 class _GridCellState extends State<GridCell>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
-  late Animation<int> intAnimation;
+  late Animation<double> intAnimation;
 
-  var arr = [91, 92, 93, 94, 95, 81];
+  var arr = [91.0, 92.0, 93.0, 94.0, 95.0, 81.0];
 
   Color _color = Colors.grey;
-  int x = 91;
+  double x = 91.0;
 
   @override
   void initState() {
-    int y = 1;
-    int z = 0;
-     super.initState();
+    super.initState();
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 2));
-    Tween<int> tween = Tween<int>(begin: arr[z], end: arr[y]);
-    intAnimation = (tween.animate(controller)
-      ..addListener(() {
-        for (int i = 0; i < arr.length-1; i++) {
-          setState(() {
-            z++;
-            y++;
-            x = intAnimation.value;
-          });
-        }
-      }));
-    controller.forward();
-   
-  }
+    Tween<double> tween = Tween<double>(begin: arr[0], end: arr[4]);
+    intAnimation = (tween.animate(controller));
 
+    controller.addListener(() {
+      setState(() {
+        x = intAnimation.value;
+      });
+    });
+
+    controller.forward();
+  }
 
   @override
   void dispose() {
@@ -50,12 +44,15 @@ class _GridCellState extends State<GridCell>
     super.dispose();
   }
 
+  // void pressed(){
+  //   controller.forward();
+  // }
+
   @override
   Widget build(BuildContext context) {
     Map<int, List<int>> map = Map();
     map[widget.flag] = [widget.i, widget.j];
     int i = 0;
-    // print(map);
 
     return Stack(
       alignment: Alignment.center,
@@ -87,9 +84,10 @@ class _GridCellState extends State<GridCell>
                 color: Colors.blue,
               )
             : Container(),
-        (map.keys.first == x)
+        (map.keys.first == x.toInt())
             ? GestureDetector(
                 onTap: () {
+                  // pressed();
                   print(arr[i]);
                   i++;
                 },
@@ -100,7 +98,7 @@ class _GridCellState extends State<GridCell>
                   ),
                 ),
               )
-            : Container()
+            : Container(),
       ],
     );
   }
