@@ -15,27 +15,30 @@ class _GridCellState extends State<GridCell>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> intAnimation;
+  late Tween<double> tween;
 
-  var arr = [91.0, 92.0, 93.0, 94.0, 95.0, 81.0];
+  var arr = [91.0, 92.0, 93.0, 94.0, 95.0, 81.0, 66.0, 51.0, 36.0, 21.0];
 
   Color _color = Colors.grey;
   double x = 91.0;
+  int j= 0 ;
 
   @override
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
-    Tween<double> tween = Tween<double>(begin: arr[0], end: arr[4]);
+        AnimationController(vsync: this, duration: Duration(seconds: 10));
+    tween = Tween<double>(begin: arr[0], end: arr[8]);
     intAnimation = (tween.animate(controller));
 
     controller.addListener(() {
       setState(() {
-        x = intAnimation.value;
+        x = arr[j < arr.length ? j++ : arr.length - 1];
       });
     });
 
     controller.forward();
+    // setNewPosition();
   }
 
   @override
@@ -44,15 +47,17 @@ class _GridCellState extends State<GridCell>
     super.dispose();
   }
 
-  // void pressed(){
-  //   controller.forward();
+  //  void setNewPosition() {
+  //     controller.forward();
   // }
+
+  int i = 0;
 
   @override
   Widget build(BuildContext context) {
     Map<int, List<int>> map = Map();
     map[widget.flag] = [widget.i, widget.j];
-    int i = 0;
+    // if (i < arr.length) i++;
 
     return Stack(
       alignment: Alignment.center,
@@ -86,11 +91,9 @@ class _GridCellState extends State<GridCell>
             : Container(),
         (map.keys.first == x.toInt())
             ? GestureDetector(
-                onTap: () {
-                  // pressed();
-                  print(arr[i]);
-                  i++;
-                },
+              onTap:(){
+                  //
+              },
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
