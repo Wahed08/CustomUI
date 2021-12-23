@@ -4,19 +4,23 @@ class GridCell extends StatefulWidget {
   final int i;
   final int j;
   final int flag;
-  final int output;
+   int output;
 
-  GridCell({required this.i, required this.j, required this.flag, required this.output});
+  GridCell(
+      {required this.i,
+      required this.j,
+      required this.flag,
+      required this.output});
 
   @override
   _GridCellState createState() => _GridCellState();
 }
 
 class _GridCellState extends State<GridCell>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> intAnimation;
-  late Tween<double> tween;
+    with TickerProviderStateMixin {
+  late AnimationController controller, controller1;
+  late Animation<double> intAnimation, intAnimation1;
+  late Tween<double> tween, tween1;
 
   var arr = [
     91.0,
@@ -36,15 +40,27 @@ class _GridCellState extends State<GridCell>
   ];
 
   Color _color = Colors.grey;
-  Color _color1 =Colors.limeAccent ;
-  double x = 91.0;
+  Color _color1 = Colors.limeAccent;
+  double x = 32.0;
   int j = 0;
+  Map<int, int> index = Map();
 
   @override
   void initState() {
     super.initState();
+
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 10));
+    controller1 =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 700));
+    // controller1.repeat(reverse: true);
+    tween1 = Tween<double>(begin: 20.0, end: 30.0);
+    intAnimation1 = (tween1.animate(controller1));
+    controller1.addListener(() {
+      setState(() {
+  
+      });
+    });
     tween = Tween<double>(begin: arr[0], end: arr[13]);
     intAnimation = (tween.animate(controller));
 
@@ -54,12 +70,38 @@ class _GridCellState extends State<GridCell>
       });
     });
 
-    // controller.forward();
+    _play();
+  }
+
+   Future<void> _play() async {
+    try {
+      await controller1.repeat(reverse: true);
+      await controller.forward();
+    } catch(err){
+        print(err);
+    }
+  }
+
+  void _alertDialog(int index) {
+   
+    setState(() {
+      x = 91.0;
+    });
+    print(x);
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("About Clicked"),
+            content: Text("Index ${index} Clicked"),
+          );
+        });
   }
 
   @override
   void dispose() {
     controller.dispose();
+    controller1.dispose();
     super.dispose();
   }
 
@@ -67,7 +109,13 @@ class _GridCellState extends State<GridCell>
   Widget build(BuildContext context) {
     Map<int, List<int>> map = Map();
     map[widget.flag] = [widget.i, widget.j];
-    // print(widget.output);
+    // print(widget.output)
+    if (widget.output == 6) {
+      index[32] = 1;
+      index[33] = 2;
+      index[47] = 3;
+      index[48] = 4;
+    }
 
     return Stack(
       alignment: Alignment.center,
@@ -100,50 +148,105 @@ class _GridCellState extends State<GridCell>
               )
             : Container(),
         //
-        (widget.i == 2 && widget.j == 2)
-            ? GestureDetector(
-              child: (widget.output == 6)?Container(
-                  decoration:
-                      BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-                ):Container(
-                  decoration:
-                      BoxDecoration(shape: BoxShape.circle, color: _color1),
-            )): Container(),
-        //
-        (widget.i == 2 && widget.j == 3)
-            ? Container(
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: _color1),
-              )
-            //
-            : Container(),
-        (widget.i == 3 && widget.j == 2)
-            ? Container(
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: _color1),
-              )
-            : Container(),
-        //
-        (widget.i == 3 && widget.j == 3)
-            ? Container(
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: _color1),
-              )
-            : Container(),
-
         (map.keys.first == x.toInt())
             ? GestureDetector(
                 onTap: () {
-                  //
+                    controller1.stop();
+                   print(index[32]);
+                  _alertDialog(index[32]!.toInt());
+               
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: _color,
-                  ),
-                ),
-              )
+                child: (widget.output == 6)
+                    ? Container(
+                        height: intAnimation1.value,
+                        width: intAnimation1.value,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _color1,
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: _color1),
+                      ))
             : Container(),
+        //
+        (widget.i == 2 && widget.j == 3)
+            ? GestureDetector(
+                onTap: () {
+                  print(index[33]);
+                  _alertDialog(index[33]!.toInt());
+                },
+                child: (widget.output == 6)
+                    ? Container(
+                        height: intAnimation1.value,
+                        width: intAnimation1.value,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _color1,
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: _color1),
+                      ))
+            //
+            : Container(),
+        (widget.i == 3 && widget.j == 2)
+            ? GestureDetector(
+                onTap: () {
+                  print(index[47]);
+                  _alertDialog(index[47]!.toInt());
+                },
+                child: (widget.output == 6)
+                    ? Container(
+                        height: intAnimation1.value,
+                        width: intAnimation1.value,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _color1,
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: _color1),
+                      ))
+            : Container(),
+        //
+        (widget.i == 3 && widget.j == 3)
+            ? GestureDetector(
+                onTap: () {
+                  print(index[48]);
+                  _alertDialog(index[48]!.toInt());
+                },
+                child: (widget.output == 6)
+                    ? Container(
+                        height: intAnimation1.value,
+                        width: intAnimation1.value,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _color1,
+                        ),
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: _color1),
+                      ))
+            : Container(),
+
+        // (map.keys.first == x.toInt())
+        //     ? GestureDetector(
+        //         onTap: () {
+        //           //
+        //         },
+        //         child: Container(
+        //           decoration: BoxDecoration(
+        //             shape: BoxShape.circle,
+        //             color: _color,
+        //           ),
+        //         ),
+        //       )
+        //     : Container(),
       ],
     );
   }
