@@ -4,8 +4,9 @@ class GridCell extends StatefulWidget {
   final int i;
   final int j;
   final int flag;
+  final int output;
 
-  GridCell({required this.i, required this.j, required this.flag});
+  GridCell({required this.i, required this.j, required this.flag, required this.output});
 
   @override
   _GridCellState createState() => _GridCellState();
@@ -17,18 +18,34 @@ class _GridCellState extends State<GridCell>
   late Animation<double> intAnimation;
   late Tween<double> tween;
 
-  var arr = [91.0, 92.0, 93.0, 94.0, 95.0, 81.0, 66.0, 51.0, 36.0, 21.0];
+  var arr = [
+    91.0,
+    92.0,
+    93.0,
+    94.0,
+    95.0,
+    81.0,
+    66.0,
+    51.0,
+    36.0,
+    21.0,
+    6.0,
+    7.0,
+    22.0,
+    37.0
+  ];
 
   Color _color = Colors.grey;
+  Color _color1 =Colors.limeAccent ;
   double x = 91.0;
-  int j= 0 ;
+  int j = 0;
 
   @override
   void initState() {
     super.initState();
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 10));
-    tween = Tween<double>(begin: arr[0], end: arr[8]);
+    tween = Tween<double>(begin: arr[0], end: arr[13]);
     intAnimation = (tween.animate(controller));
 
     controller.addListener(() {
@@ -37,8 +54,7 @@ class _GridCellState extends State<GridCell>
       });
     });
 
-    controller.forward();
-    // setNewPosition();
+    // controller.forward();
   }
 
   @override
@@ -47,17 +63,11 @@ class _GridCellState extends State<GridCell>
     super.dispose();
   }
 
-  //  void setNewPosition() {
-  //     controller.forward();
-  // }
-
-  int i = 0;
-
   @override
   Widget build(BuildContext context) {
     Map<int, List<int>> map = Map();
     map[widget.flag] = [widget.i, widget.j];
-    // if (i < arr.length) i++;
+    // print(widget.output);
 
     return Stack(
       alignment: Alignment.center,
@@ -89,11 +99,43 @@ class _GridCellState extends State<GridCell>
                 color: Colors.blue,
               )
             : Container(),
+        //
+        (widget.i == 2 && widget.j == 2)
+            ? GestureDetector(
+              child: (widget.output == 6)?Container(
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+                ):Container(
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: _color1),
+            )): Container(),
+        //
+        (widget.i == 2 && widget.j == 3)
+            ? Container(
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: _color1),
+              )
+            //
+            : Container(),
+        (widget.i == 3 && widget.j == 2)
+            ? Container(
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: _color1),
+              )
+            : Container(),
+        //
+        (widget.i == 3 && widget.j == 3)
+            ? Container(
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: _color1),
+              )
+            : Container(),
+
         (map.keys.first == x.toInt())
             ? GestureDetector(
-              onTap:(){
+                onTap: () {
                   //
-              },
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,

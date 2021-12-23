@@ -42,7 +42,7 @@ class _BoardState extends State<Board> {
   @override
   Widget build(BuildContext context) {
     Widget getCell(int i, int j, int flag) {
-      return GridCell(i: i, j: j, flag: flag);
+      return GridCell(i: i, j: j, flag: flag, output:output);
     }
 
     return Scaffold(
@@ -71,7 +71,8 @@ class _BoardState extends State<Board> {
                               onTap: () {
                                 audioCache.play('roll.wav');
                                 diceChanges();
-                                changes();
+                                GridCell(i: 0, j: 0, flag: flag, output:output);
+                                //changes();
                               },
                             ),
                           )
